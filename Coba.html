@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Desa Kami</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Font */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #F5F5F5; /* Latar belakang keseluruhan */
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #4A90E2; /* Biru Langit */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        nav.sticky {
+            background-color: #357ABD; /* Biru lebih gelap */
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #ffffff33;
+            color: #fff;
+        }
+        .search-box {
+            position: relative;
+        }
+        .search-box input[type="text"] {
+            padding: 7px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Header Background */
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('gambargunung.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            transition: all 0.5s;
+        }
+        header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Konten */
+        .content-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content-section h2 {
+            color: #4A90E2; /* Biru Langit */
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .content-section p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Kegiatan Masyarakat */
+        .activities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .activity-card {
+            width: 250px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .activity-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .activity-card h3 {
+            padding: 10px;
+            background-color: #66BB6A; /* Hijau Muda */
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        .activity-card p {
+            padding: 10px;
+            font-size: 1rem;
+            color: #555;
+        }
+        .activity-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Peta */
+        #map {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .activity-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar dengan Pencarian -->
+    <nav id="navbar">
+        <div class="logo">
+            <h2>PASIR KIDUL</h2>
+        </div>
+        <ul>
+            <li><a href="#profil">Profil Desa</a></li>
+            <li><a href="#visi-misi">Visi & Misi</a></li>
+            <li><a href="#sejarah">Sejarah</a></li>
+            <li><a href="#kegiatan">Kegiatan Masyarakat</a></li>
+            <li><a href="#peta">Peta Administrasi</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Cari...">
+            <button onclick="searchContent()"><i class="fas fa-search"></i></button>
+        </div>
+    </nav>
+
+    <!-- Header dengan Background Gambar -->
+    <header>
+        <h1>Selamat Datang di Desa Pasir Kidul</h1>
+        <p>Desa yang asri, nyaman, dan penuh kebersamaan.</p>
+    </header>
+
+    <!-- Profil Desa -->
+    <div class="content-section" id="profil">
+        <h2>Profil Desa</h2>
+        <p>Desa Pasir Kidul merupakan desa yang terletak di wilayah strategis dengan alam yang subur dan asri. Desa ini dikenal sebagai kawasan yang ramah lingkungan dan memiliki banyak kegiatan kemasyarakatan. Selain itu, Desa Pasir Kidul menyediakan berbagai fasilitas umum, seperti sarana pendidikan, layanan kesehatan, dan pusat kegiatan masyarakat, yang mendukung kehidupan sosial ekonomi warganya.</p>
+    </div>
+
+    <!-- Visi dan Misi Desa -->
+    <div class="content-section" id="visi-misi">
+        <h2>Visi & Misi Desa</h2>
+        <p><strong>Visi:</strong> Membangun masyarakat yang mandiri, berdaya saing, dan berwawasan lingkungan.</p>
+        <p><strong>Misi:</strong> Mengembangkan potensi lokal, menjaga kelestarian alam, serta meningkatkan kesejahteraan masyarakat.</p>
+    </div>
+
+    <!-- Sejarah Desa -->
+    <div class="content-section" id="sejarah">
+        <h2>Sejarah Desa</h2>
+        <p>Desa Pasir Kidul telah berdiri sejak abad ke-19, dan selama bertahun-tahun berkembang menjadi desa yang dinamis dan berbudaya. Sejarah desa ini penuh dengan cerita tentang perjuangan dan kebersamaan masyarakat dalam menjaga kelestarian lingkungan serta mempertahankan adat dan tradisi.</p>
+    </div>
+
+    <!-- Kegiatan Masyarakat -->
+    <div class="content-section" id="kegiatan">
+        <h2>Kegiatan Masyarakat</h2>
+        <div class="activities">
+            <div class="activity-card">
+                <img src="bebersih.jpg" alt="Kegiatan Kebersihan">
+                <h3>Kegiatan Kebersihan</h3>
+                <p>Masyarakat Desa Pasir Kidul rutin mengadakan kegiatan gotong royong untuk menjaga kebersihan lingkungan.</p>
+            </div>
+            <div class="activity-card">
+                <img src="tani.jpg" alt="Pertanian">
+                <h3>Budidaya Pertanian</h3>
+                <p>Pertanian menjadi salah satu kegiatan utama masyarakat, dengan produk utama seperti padi, sayuran, dan buah-buahan.</p>
+            </div>
+            <div class="activity-card">
+                <img src="tari.jpg" alt="Festival Desa">
+                <h3>Festival Desa</h3>
+                <p>Setiap tahun, desa ini mengadakan festival budaya yang melibatkan seluruh lapisan masyarakat.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Peta Administrasi Desa -->
+    <div class="content-section" id="peta">
+        <h2>Peta Administrasi Desa</h2>
+        <iframe id="map" src="https://mapadministrasipasirkidul.vercel.app/#16/-7.4141/109.2052" frameborder="0"></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Desa Pasir Kidul. Semua hak cipta dilindungi.</p>
+    </footer>
+
+    <!-- Script untuk Menambahkan Efek Sticky pada Navbar -->
+    <script>
+        window.onscroll = function() {stickyNavbar()};
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function stickyNavbar() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky");
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+
+        function searchContent() {
+            const input = document.getElementById("search-input").value.toLowerCase();
+            const sections = document.querySelectorAll(".content-section");
+            sections.forEach(section => {
+                if (section.textContent.toLowerCase().includes(input)) {
+                    section.style.display = "block";
+                    section.scrollIntoView({ behavior: "smooth", block: "start" });
+                } else {
+                    section.style.display = "none";
+                }
+            });
+            if (input === "") {
+                sections.forEach(section => {
+                    section.style.display = "block";
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
